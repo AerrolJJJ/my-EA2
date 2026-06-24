@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Feedback Survey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <title>Food Customer Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,190 +12,218 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --green: #0f9d58;
+      --green-dark: #0b8043;
+      --page-bg: #f1f3f4;
+      --text: #202124;
+      --muted: #5f6368;
+      --border: #dadce0;
+      --card: #ffffff;
+    }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #10b981;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
       min-height: 100vh;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 24px 16px 40px;
     }
 
     .container {
       width: 100%;
-      max-width: 600px;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-      color: white;
+    .google-bar {
+      height: 10px;
+      background: var(--green);
+      border-radius: 16px 16px 0 0;
     }
 
-    .header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 12px;
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 28px 24px 20px;
+      box-shadow: 0 2px 6px rgba(60, 64, 67, 0.08);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
       font-weight: 700;
-      letter-spacing: -0.5px;
     }
 
-    .header p {
-      font-size: 1.1rem;
-      opacity: 0.95;
+    .hero p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 14px;
+    }
+
+    .required-note {
+      font-size: 0.85rem;
+      color: var(--green);
       font-weight: 500;
     }
 
     form {
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      animation: slideUp 0.5s ease-out;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(60, 64, 67, 0.08);
+      overflow: hidden;
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .section {
+      padding: 24px;
+      border-top: 1px solid #eef0f2;
     }
 
-    .form-group {
-      margin-bottom: 28px;
+    .section:first-child {
+      border-top: none;
     }
 
-    .form-group:last-of-type {
-      margin-bottom: 32px;
-    }
-
-    label {
-      display: block;
+    .section-title {
+      font-size: 1rem;
+      margin-bottom: 6px;
       font-weight: 600;
-      color: #1a202c;
-      margin-bottom: 10px;
+    }
+
+    .section-help {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .question {
+      margin-bottom: 24px;
+    }
+
+    .question:last-child {
+      margin-bottom: 0;
+    }
+
+    label.question-label {
+      display: block;
       font-size: 0.95rem;
-      letter-spacing: 0.3px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .required {
+      color: var(--green);
+      margin-left: 4px;
     }
 
     input[type="text"],
+    input[type="email"],
+    input[type="date"],
     select,
     textarea {
       width: 100%;
-      padding: 12px 14px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      padding: 10px 2px 12px;
       font-family: inherit;
       font-size: 1rem;
-      transition: all 0.3s ease;
-      background: #f7fafc;
-    }
-
-    input[type="text"]:hover,
-    select:hover,
-    textarea:hover {
-      border-color: #cbd5e0;
-      background: #fff;
+      color: var(--text);
+      transition: border-color 0.2s ease;
     }
 
     input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="date"]:focus,
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: #10b981;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      border-bottom-color: var(--green);
+      box-shadow: none;
     }
 
     textarea {
       resize: vertical;
       min-height: 120px;
-      font-family: inherit;
-    }
-
-    fieldset {
-      margin-bottom: 28px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
-      background: #f7fafc;
-      transition: all 0.3s ease;
-    }
-
-    fieldset:hover {
-      border-color: #cbd5e0;
-      background: #fff;
-    }
-
-    legend {
-      font-weight: 600;
-      color: #1a202c;
-      padding: 0 10px;
-      font-size: 0.95rem;
-      letter-spacing: 0.3px;
     }
 
     .radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: grid;
+      gap: 10px;
     }
 
-    .radio-option {
+    .radio-option,
+    .checkbox-option {
       display: flex;
       align-items: center;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      background: #fafafa;
     }
 
-    .radio-option:hover {
-      background: #edf2f7;
+    .radio-option:hover,
+    .checkbox-option:hover {
+      border-color: #c6e7d5;
+      background: #f6fbf8;
     }
 
-    .radio-option input[type="radio"] {
-      margin-right: 12px;
-      cursor: pointer;
+    .radio-option input[type="radio"],
+    .checkbox-option input[type="checkbox"] {
       width: 18px;
       height: 18px;
-      accent-color: #10b981;
+      accent-color: var(--green);
+      flex: 0 0 auto;
     }
 
-    .radio-option label {
-      margin-bottom: 0;
-      cursor: pointer;
-      font-weight: 500;
-      flex: 1;
+    .radio-option span,
+    .checkbox-option span {
+      font-size: 0.95rem;
+    }
+
+    .rating-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .rating-grid .radio-option {
+      justify-content: center;
+      text-align: center;
+      padding: 12px 8px;
+      min-height: 54px;
+    }
+
+    .actions {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     button {
       width: 100%;
-      padding: 14px;
-      background: #10b981;
+      padding: 14px 18px;
+      background: var(--green);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     button:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-    }
-
-    button:active:not(:disabled) {
-      transform: translateY(0);
+      background: var(--green-dark);
+      transform: translateY(-1px);
     }
 
     button:disabled {
@@ -207,162 +235,197 @@
       display: inline-block;
       width: 14px;
       height: 14px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.35);
       border-top-color: white;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin-right: 8px;
+      vertical-align: -2px;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    .success-message {
+    .success-message,
+    .error-message {
       display: none;
-      padding: 16px;
-      background: #c6f6d5;
-      color: #22543d;
-      border-radius: 8px;
-      margin-top: 20px;
-      border: 1px solid #9ae6b4;
-      animation: slideDown 0.3s ease-out;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
     }
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .success-message {
+      background: #e6f4ea;
+      color: #1e4620;
+      border: 1px solid #b7dfc0;
     }
 
     .error-message {
-      display: none;
-      padding: 16px;
-      background: #fed7d7;
-      color: #742a2a;
-      border-radius: 8px;
-      margin-top: 20px;
-      border: 1px solid #fc8181;
+      background: #fce8e6;
+      color: #a50e0e;
+      border: 1px solid #f6c7c3;
     }
 
-    @media (max-width: 600px) {
-      form {
-        padding: 24px;
-      }
-
-      .header h1 {
-        font-size: 1.8rem;
-      }
-
-      .header p {
-        font-size: 1rem;
-      }
-
-      label {
-        font-size: 0.9rem;
-      }
+    .sheet-tip {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    input:invalid:not(:placeholder-shown) {
-      border-color: #fc8181;
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .section,
+      .actions,
+      .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .rating-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="header">
-    <h1>Customer Feedback</h1>
-    <p>We'd love to hear your thoughts</p>
+  <div class="google-bar"></div>
+  <div class="hero">
+    <h1>Food Customer Feedback</h1>
+    <p>Tell us about your dining experience so we can improve our food and service.</p>
+    <div class="required-note">* Required</div>
   </div>
 
-  <form id="googleForm" novalidate>
-    <div class="form-group">
-      <label for="name">Full Name <span style="color: #10b981;">*</span></label>
-      <input type="text" name="name" id="name" placeholder="John Doe" required aria-required="true">
+  <form id="googleForm">
+    <div class="section">
+      <div class="section-title">Your details</div>
+      <div class="section-help">Basic information for your feedback entry.</div>
+
+      <div class="question">
+        <label class="question-label" for="name">Customer Name<span class="required">*</span></label>
+        <input type="text" name="name" id="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="phone">Phone Number</label>
+        <input type="text" name="phone" id="phone" placeholder="Optional">
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="visitDate">Visit Date<span class="required">*</span></label>
+        <input type="date" name="visitDate" id="visitDate" required>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="gender">Gender <span style="color: #10b981;">*</span></label>
-      <select name="gender" id="gender" required aria-required="true">
-        <option value="">Select an option</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-        <option value="Prefer not to say">Prefer not to say</option>
-      </select>
-    </div>
+    <div class="section">
+      <div class="section-title">Dining experience</div>
+      <div class="section-help">Rate the food and service from 1 to 5.</div>
 
-    <fieldset>
-      <legend>Age Group <span style="color: #10b981;">*</span></legend>
-      <div class="radio-group" role="group" aria-labelledby="ageGroup">
-        <div class="radio-option">
-          <input type="radio" name="ageGroup" id="age1" value="Under 18" required>
-          <label for="age1">Under 18</label>
-        </div>
-        <div class="radio-option">
-          <input type="radio" name="ageGroup" id="age2" value="18-30" required>
-          <label for="age2">18-30</label>
-        </div>
-        <div class="radio-option">
-          <input type="radio" name="ageGroup" id="age3" value="31-50" required>
-          <label for="age3">31-50</label>
-        </div>
-        <div class="radio-option">
-          <input type="radio" name="ageGroup" id="age4" value="51+" required>
-          <label for="age4">51+</label>
+      <div class="question">
+        <label class="question-label" for="mealType">Meal Type<span class="required">*</span></label>
+        <select name="mealType" id="mealType" required>
+          <option value="">Select meal type</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+        </select>
+      </div>
+
+      <div class="question">
+        <label class="question-label">Food Quality<span class="required">*</span></label>
+        <div class="radio-group rating-grid">
+          <label class="radio-option"><input type="radio" name="foodQuality" value="1" required><span>1</span></label>
+          <label class="radio-option"><input type="radio" name="foodQuality" value="2" required><span>2</span></label>
+          <label class="radio-option"><input type="radio" name="foodQuality" value="3" required><span>3</span></label>
+          <label class="radio-option"><input type="radio" name="foodQuality" value="4" required><span>4</span></label>
+          <label class="radio-option"><input type="radio" name="foodQuality" value="5" required><span>5</span></label>
         </div>
       </div>
-    </fieldset>
 
-    <div class="form-group">
-      <label for="comments">Additional Comments</label>
-      <textarea name="comments" id="comments" placeholder="Share your feedback with us..." aria-label="Additional comments"></textarea>
+      <div class="question">
+        <label class="question-label">Service Quality<span class="required">*</span></label>
+        <div class="radio-group rating-grid">
+          <label class="radio-option"><input type="radio" name="serviceQuality" value="1" required><span>1</span></label>
+          <label class="radio-option"><input type="radio" name="serviceQuality" value="2" required><span>2</span></label>
+          <label class="radio-option"><input type="radio" name="serviceQuality" value="3" required><span>3</span></label>
+          <label class="radio-option"><input type="radio" name="serviceQuality" value="4" required><span>4</span></label>
+          <label class="radio-option"><input type="radio" name="serviceQuality" value="5" required><span>5</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label">Cleanliness<span class="required">*</span></label>
+        <div class="radio-group rating-grid">
+          <label class="radio-option"><input type="radio" name="cleanliness" value="1" required><span>1</span></label>
+          <label class="radio-option"><input type="radio" name="cleanliness" value="2" required><span>2</span></label>
+          <label class="radio-option"><input type="radio" name="cleanliness" value="3" required><span>3</span></label>
+          <label class="radio-option"><input type="radio" name="cleanliness" value="4" required><span>4</span></label>
+          <label class="radio-option"><input type="radio" name="cleanliness" value="5" required><span>5</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label">Would you recommend us?<span class="required">*</span></label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="recommend" value="Yes" required><span>Yes</span></label>
+          <label class="radio-option"><input type="radio" name="recommend" value="No" required><span>No</span></label>
+        </div>
+      </div>
     </div>
 
-    <button type="submit" id="submitBtn">Submit Feedback</button>
-    
-    <div class="success-message" id="successMessage">
-      ✓ Thank you! Your feedback has been submitted successfully.
+    <div class="section">
+      <div class="section-title">More feedback</div>
+      <div class="section-help">You can tell us what you liked and what can be improved.</div>
+
+      <div class="question">
+        <label class="question-label" for="favoriteDish">Favorite Dish</label>
+        <input type="text" name="favoriteDish" id="favoriteDish" placeholder="What did you enjoy most?">
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="improvement">What should we improve?<span class="required">*</span></label>
+        <textarea name="improvement" id="improvement" placeholder="Share your suggestions..." required></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="comments">Additional Comments</label>
+        <textarea name="comments" id="comments" placeholder="Any other feedback?"></textarea>
+      </div>
     </div>
-    
-    <div class="error-message" id="errorMessage">
-      ✗ Something went wrong. Please try again.
+
+    <div class="actions">
+      <button type="submit" id="submitBtn">Submit</button>
+      <div class="success-message" id="successMessage">Thank you! Your food feedback has been submitted.</div>
+      <div class="error-message" id="errorMessage">Something went wrong. Please try again.</div>
+      <div class="sheet-tip">
+        For Google Sheets, use these column headers: Timestamp, Customer Name, Phone Number, Visit Date, Meal Type, Food Quality, Service Quality, Cleanliness, Recommend, Favorite Dish, Improvement, Additional Comments.
+      </div>
     </div>
   </form>
 </div>
 
 <script>
-  // Google Apps Script endpoint
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyVzj1Ip87-vwARqSU9oD9alTNCBd118Xa7Au8LzLCLW1O5wxBadzEcnsRH8dGjl7iG/exec';
   const form = document.getElementById('googleForm');
   const submitBtn = document.getElementById('submitBtn');
   const successMessage = document.getElementById('successMessage');
   const errorMessage = document.getElementById('errorMessage');
 
-  // Form submission handler with enhanced UX
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validate form
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    // Check if at least one radio button is selected
-    const ageGroupChecked = document.querySelector('input[name="ageGroup"]:checked');
-    if (!ageGroupChecked) {
-      alert('Please select an age group');
-      return;
-    }
-
-    // Show loading state
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span class="spinner"></span>Submitting...';
@@ -377,35 +440,14 @@
 
       if (!response.ok) throw new Error('Network response was not ok');
 
-      // Success state
       successMessage.style.display = 'block';
       form.reset();
       submitBtn.innerHTML = originalText;
-      submitBtn.disabled = true;
-
-      // Re-enable button after 3 seconds
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        successMessage.style.display = 'none';
-      }, 3000);
-
+      submitBtn.disabled = false;
     } catch (error) {
       console.error('Error:', error);
       errorMessage.style.display = 'block';
       submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-    }
-  });
-
-  // Re-enable submit button when form changes
-  form.addEventListener('change', () => {
-    if (successMessage.style.display === 'none') {
-      submitBtn.disabled = false;
-    }
-  });
-
-  form.addEventListener('input', () => {
-    if (successMessage.style.display === 'none') {
       submitBtn.disabled = false;
     }
   });
